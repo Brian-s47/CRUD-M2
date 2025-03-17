@@ -1,19 +1,20 @@
 const key = `67d2f8198bca322cc268a81b`
 
+//Modulo para carga de datos de la API
 export const find = async()=>{
     const url = new URL(`https://${key}.mockapi.io/`);
     url.pathname += "informacion";
     const response = await fetch(url.toString(), {method: "get"});
     return await response.json()   
 }
-
+//Modulo para Busqueda de datos de la API
 export const search = async(id)=>{
     const url = new URL(`https://${key}.mockapi.io/`);
     url.pathname += `informacion/${id}`;
     const response = await fetch(url.toString(), {method: "get"});
     return await response.json()   
 }
-
+//Modulo para guardar datos de la API
 export const save = async(data)=>{
     const url = new URL(`https://${key}.mockapi.io/`);
     const headers = new Headers();
@@ -29,7 +30,7 @@ export const save = async(data)=>{
     return await response.json()
     
 }
-
+//Modulo para editar de datos de la API
 export const edit = async(data)=>{ 
     const {id} = data;
     if(typeof id === "undefined") return "No se envio el id";
@@ -51,7 +52,7 @@ export const edit = async(data)=>{
     // x.updateAt = new Date(x.updateAT * 1000);
     return response;
 }
-
+//Modulo para eliminar de datos de la API
 export const remove = async(id)=>{
     const url = new URL(`https://${key}.mockapi.io/`);
     url.pathname += `informacion/${id}`;

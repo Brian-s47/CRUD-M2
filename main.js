@@ -1,11 +1,29 @@
 // Zona de importacion de Modulos
 import{find, search, save, edit, remove} from "./api.js";
-import{myTable, myFormAdd} from "./components.js";
-
+import{myFormAdd, myTable} from "./components.js";
 
 // Zona de creacion de constantes
-    const data = await find(); 
-    // Traer informacion de la API guardado en data:
+    const table = document.querySelector("#myTable")
+    const button = document.querySelector("#my__button")
+    const dialog = document.querySelector("#my__dialog")
+    const close = document.querySelector("#my__dialog_close")
+
+// Zona de Eventos de Escucha
+    // Evento de escucha "DOMContentLoaded" para cargar datos de la tabla al inicio
+    addEventListener("DOMContentLoaded", async()=>{
+        const data = await find();
+        // Traer informacion de la API guardado en data:
+        const fragTdbody = myTable(data);
+        // Constante para fragmento se llama modulo: myTable y se envian datos
+        table.append(fragTdbody);
+        //Evento para abrir el dialogo al abrir o recargar la pagina
+        // button.dispatchEvent(new Event("click")); 
+    })
+    // Evento de escucha "click" para el boton: Agregar
+    button.addEventListener("click", myFormAdd);
+    // Evento de escucha "click" para el boton: X de cerrar el cuadro de dialogo
+    close.addEventListener("click", ()=>{dialog.close()});//Forma reducida
+    // Estrutura del "data"
     //[
     //  {
     //     "createdAt": 1741887923,
@@ -22,30 +40,30 @@ import{myTable, myFormAdd} from "./components.js";
     //  },
     //]
 
-// Constante para fragmento se llama modulo: myTable y se envian datos
-    const fragTdbody = myTable(data);
+    // Pruebas de Modulos de CRUD-API
 
-    const table = document.querySelector("#myTable")
-    const button = document.querySelector("#my__button")
-    const dialog = document.querySelector("#my__dialog")
-    const close = document.querySelector("my__dialog-close")
+    // Prueba de Cargar datos
+    // const server = await find ()
+    // console.log(server)
 
-// Zona de Eventos de Escucha
-    // Evento de escucha "DOMContentLoaded" para cargar datos de la tabla al inicio
-    addEventListener("DOMContentLoaded", async()=>{
-        const data = await find();
-        const fragTdbody = myTable(data);
-        table.append(fragTdbody);
-        //Evento para abrir el dialogo al abrir o recargar la pagina
-        button.dispatchEvent(new Event("click")); 
-    })
-    // Evento de escucha "click" para el boton: Agregar
-    button.addEventListener("click", (e)=>myFormAdd)
-    // Evento de escucha "click" para el boton: X de cerrar el cuadro de dialogo
-    close.addEventListener("click", (e)=> dialog.close() //Forma reducida
-    )
-// Zona de Ejecucion de Codigo
+    // Prueba de Busqueda datos
+    // const data = await search(5)
+    // console.log(data)
 
+    // Prueba de Modificar datos    
+    // const obj = {
+    //     name: "Miguelitooo ",
+    //     lastName: "Castro",
+    //     age: 43,
+    //     email: "email@gmail.com",
+    //     rol: ["user", "admin"],
+    // }
+    // const message = await save(obj);
+    // console.log(message);
+
+    // Prueba de Eliminar datos
+    // const dataRemove = await remove(15);
+    // console.log(dataRemove);
 
 
 

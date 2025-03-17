@@ -38,14 +38,15 @@ export const myTable = (data)=> {
         const tdUpdate = document.createElement("td");
         tdUpdate.textContent = new Date(element.updateAt *1000);
 
+        // Creacion de Botones para edision y borrar
         const tdActions = document.createElement("td")
         const btEdit = document.createElement("button")
-        btEdit.textContent ="Edit";
+        btEdit.textContent = "Edit";
         const btDelete = document.createElement("button")
-        btEdit.btDelete ="Delete";
+        btDelete.textContent = "Delete";
         tdActions.append (btEdit, btDelete)
         
-        tr.append(tdId, tdName, tdLastName, tdAge, tdEmail,tdRol, tdCreate, tdUpdate)
+        tr.append(tdId, tdName, tdLastName, tdAge, tdEmail, tdRol, tdCreate, tdUpdate, tdActions)
         // Agregar lo elementos creados el Elemento "tr" creado de primero
         tdbody.append(tr)
         // Agregar el elemento "tr" el elemento "tbody" creado de primero
@@ -54,5 +55,12 @@ export const myTable = (data)=> {
 }
 //Construccion de un formulario
 export const myFormAdd = (e)=>{
-    const dialog = document.querySelector("#my__form")
-}
+    const dialog = document.querySelector("#my__dialog")
+    dialog.showModal();
+    const my_form = document.createElement("form");
+    my_form.action="/informacion";
+    my_form.method="post";
+
+    console.log(my_form);
+    
+};
